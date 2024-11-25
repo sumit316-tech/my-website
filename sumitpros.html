@@ -92,7 +92,7 @@ h1, h2, h3 {
         <h1>Sumit's Prostitution HUB</h1>
         
         <!-- Image Added and Centered -->
-        <img src="https://safecity.in/wp-content/uploads/2013/12/prostitution.jpg" alt="Prostitution Hub Image">
+        <img src="your-image-path.jpg" alt="Prostitution Hub Image">
         
         <h2>Book Your Hoe</h2>
         
@@ -149,6 +149,27 @@ h1, h2, h3 {
         const form = document.getElementById('registration-form');
         const attendeesTableBody = document.getElementById('attendees-body');
 
+        // Load saved attendees from localStorage
+        function loadAttendees() {
+            const attendees = JSON.parse(localStorage.getItem('attendees')) || [];
+            attendees.forEach(attendee => {
+                addRowToTable(attendee);
+            });
+        }
+
+        // Add a row to the table
+        function addRowToTable(attendee) {
+            const newRow = document.createElement('tr');
+            newRow.innerHTML = `
+                <td>${attendee.name}</td>
+                <td>${attendee.pros}</td>
+                <td>${attendee.phone}</td>
+                <td>${attendee.rate}</td>
+                <td>${attendee.hour}</td>
+            `;
+            attendeesTableBody.appendChild(newRow);
+        }
+
         // Handle form submission
         form.addEventListener('submit', function(event) {
             event.preventDefault(); // Prevent the default form submission behavior
@@ -160,30 +181,33 @@ h1, h2, h3 {
             const rate = document.getElementById('rate').value;
             const hour = document.getElementById('hour').value;
 
-            // Create a new table row
-            const newRow = document.createElement('tr');
+            // Create a new attendee object
+            const newAttendee = { name, pros, phone, rate, hour };
 
-            // Create table cells and append them to the row
-            newRow.innerHTML = `
-                <td>${name}</td>
-                <td>${pros}</td>
-                <td>${phone}</td>
-                <td>${rate}</td>
-                <td>${hour}</td>
-            `;
+            // Get the existing attendees from localStorage
+            const attendees = JSON.parse(localStorage.getItem('attendees')) || [];
 
-            // Append the new row to the table body
-            attendeesTableBody.appendChild(newRow);
+            // Add the new attendee to the list
+            attendees.push(newAttendee);
 
-            // Check if there are more than 3 rows
-            const rows = attendeesTableBody.getElementsByTagName('tr');
-            if (rows.length > 3) {
-                attendeesTableBody.deleteRow(0); // Remove the first row if there are more than 3
+            // If there are more than 3 attendees, remove the first one
+            if (attendees.length > 3) {
+                attendees.shift(); // Remove the first attendee
             }
+
+            // Save the updated attendees back to localStorage
+            localStorage.setItem('attendees', JSON.stringify(attendees));
+
+            // Clear the table and reload the data
+            attendeesTableBody.innerHTML = '';
+            loadAttendees();
 
             // Clear form fields after submission
             form.reset();
         });
+
+        // Load saved attendees when the page loads
+        window.onload = loadAttendees;
     </script>
 </body>
 </html>
