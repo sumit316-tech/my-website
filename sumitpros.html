@@ -2,96 +2,80 @@
 <html lang="en">
 <head>
     <style>
-        /* Global Body Styles */
-body {
-    line-height: 1.6;
-    margin: 0;
-    padding: 0;
-    background-color: #f4f4f4;
-    color: #333;
-}
+        /* Styling for the page */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
 
-/* Container Styles */
-.container {
-    width: 90%;
-    margin: 20px auto;
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 10px;
-}
+        .container {
+            width: 80%;
+            margin: 20px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+        }
 
-/* Heading Styles */
-h1, h2, h3 {
-    text-align: center;
-    color: #af4c4c;
-}
+        h1, h2, h3 {
+            text-align: center;
+            color: #af4c4c;
+        }
 
-/* Image Styles - Centering the Image */
-.container img {
-    display: block;        /* Makes the image a block-level element */
-    margin: 20px auto;     /* Centers the image horizontally */
-    width: 100%;           /* Adjust image width to fit the container */
-    max-width: 500px;      /* Optional: Limit the maximum width of the image */
-    border-radius: 10px;   /* Optional: rounded corners */
-}
+        .registration-form label {
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: block;
+        }
 
-/* Form Layout */
-.registration-form label {
-    font-weight: bold;
-    margin-bottom: 5px;
-    display: block;
-}
+        .registration-form input,
+        .registration-form select {
+            padding: 10px;
+            margin: 10px 0;
+            font-size: 16px;
+            width: 100%;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
 
-.registration-form input,
-.registration-form select {
-    padding: 10px;
-    margin: 10px;
-    font-size: 16px;
-    width: 100%;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-}
+        .registration-form input[type="submit"] {
+            background-color: #4e4caf;
+            color: white;
+        }
 
-.registration-form input[type="submit"] {
-    background-color: #4e4caf;
-    color: white;
-    margin: auto;
-}
+        .registration-form input[type="submit"]:hover {
+            background-color: #a04545;
+        }
 
-.registration-form input[type="submit"]:hover {
-    background-color: #a04545;
-}
+        .attendees-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
 
-/* Table Styles */
-.attendees-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-}
+        .attendees-table th {
+            background-color: #af4c4c;
+            color: white;
+            padding: 10px;
+            text-align: left;
+        }
 
-.attendees-table th {
-    background-color: #af4c4c;
-    color: white;
-    padding: 10px;
-    text-align: left;
-}
+        .attendees-table td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
 
-.attendees-table td {
-    padding: 10px;
-    border: 1px solid #ddd;
-    text-align: left;
-}
-
-.attendees-table tr:nth-child(even) {
-    background-color: #f2f2f2;
-}
+        .attendees-table tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>Sumit's Prostitution HUB</h1>
         
-        <!-- Image Added and Centered -->
         <img src="https://safecity.in/wp-content/uploads/2013/12/prostitution.jpg" alt="Prostitution Hub Image">
         
         <h2>Book Your Hoe</h2>
@@ -139,75 +123,90 @@ h1, h2, h3 {
                 </tr>
             </thead>
             <tbody id="attendees-body">
-               <!-- Dynamic content will be added here -->
+                <!-- Static Initial Attendees (Shown on Page Load) -->
+                <tr>
+                    <td>Muzzu</td>
+                    <td>Kareem Bhoda</td>
+                    <td>9876543210</td>
+                    <td>30</td>
+                    <td>2 Hours</td>
+                </tr>
+                <tr>
+                    <td>Chaitu</td>
+                    <td>Rachna</td>
+                    <td>9123456789</td>
+                    <td>25</td>
+                    <td>1 Hour</td>
+                </tr>
+                <tr>
+                    <td>Nobody Chose</td>
+                    <td>Zerlin Japani</td>
+                    <td>Dhanda band hogya</td>
+                    <td></td>
+                    <td></td>
+                </tr>
             </tbody>
         </table>
     </div>
 
     <script>
-        // Get the form and table body
         const form = document.getElementById('registration-form');
         const attendeesTableBody = document.getElementById('attendees-body');
 
-        // Load saved attendees from localStorage
-        function loadAttendees() {
-            const attendees = JSON.parse(localStorage.getItem('attendees')) || [];
-            attendees.forEach(attendee => {
-                addRowToTable(attendee);
-            });
-        }
+        // Array to hold the latest 3 attendees
+        let attendees = [
+            { name: "Muzzu", pros: "Kareem Bhoda", phone: "9876543210", rate: "2 Hours", hour: "30" },
+            { name: "Chaitu", pros: "Rachna", phone: "9123456789", rate: "1 Hour", hour: "25" },
+            { name: "Nobody Chose", pros: "Zerlin Japani", phone: "Dhanda band hogya", rate: "", hour: "" }
+        ];
 
-        // Add a row to the table
-        function addRowToTable(attendee) {
-            const newRow = document.createElement('tr');
-            newRow.innerHTML = `
-                <td>${attendee.name}</td>
-                <td>${attendee.pros}</td>
-                <td>${attendee.phone}</td>
-                <td>${attendee.rate}</td>
-                <td>${attendee.hour}</td>
-            `;
-            attendeesTableBody.appendChild(newRow);
+        // Function to update the attendees table
+        function updateAttendeesTable() {
+            // Clear existing rows in the table body
+            attendeesTableBody.innerHTML = '';
+
+            // Loop through the attendees array and add rows to the table
+            for (const attendee of attendees) {
+                const newRow = document.createElement('tr');
+                newRow.innerHTML = `
+                    <td>${attendee.name}</td>
+                    <td>${attendee.pros}</td>
+                    <td>${attendee.phone}</td>
+                    <td>${attendee.rate}</td>
+                    <td>${attendee.hour}</td>
+                `;
+                attendeesTableBody.appendChild(newRow);
+            }
         }
 
         // Handle form submission
         form.addEventListener('submit', function(event) {
-            event.preventDefault(); // Prevent the default form submission behavior
+            event.preventDefault();
 
-            // Get form values
             const name = document.getElementById('name').value;
             const pros = document.getElementById('pros').value;
             const phone = document.getElementById('phone').value;
             const rate = document.getElementById('rate').value;
             const hour = document.getElementById('hour').value;
 
-            // Create a new attendee object
+            // Add the new attendee to the array
             const newAttendee = { name, pros, phone, rate, hour };
 
-            // Get the existing attendees from localStorage
-            const attendees = JSON.parse(localStorage.getItem('attendees')) || [];
-
-            // Add the new attendee to the list
-            attendees.push(newAttendee);
-
-            // If there are more than 3 attendees, remove the first one
-            if (attendees.length > 3) {
-                attendees.shift(); // Remove the first attendee
+            // Add the new attendee and remove the oldest attendee if there are already 3
+            if (attendees.length >= 3) {
+                attendees.shift(); // Remove the first (oldest) attendee
             }
+            attendees.push(newAttendee);  // Add the new attendee
 
-            // Save the updated attendees back to localStorage
-            localStorage.setItem('attendees', JSON.stringify(attendees));
+            // Update the table with the latest 3 attendees
+            updateAttendeesTable();
 
-            // Clear the table and reload the data
-            attendeesTableBody.innerHTML = '';
-            loadAttendees();
-
-            // Clear form fields after submission
+            // Reset the form fields
             form.reset();
         });
 
-        // Load saved attendees when the page loads
-        window.onload = loadAttendees;
+        // Initial table update (already contains static attendees)
+        updateAttendeesTable();
     </script>
 </body>
 </html>
