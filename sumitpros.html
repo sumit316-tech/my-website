@@ -22,13 +22,14 @@
             text-align: center;
             color: #af4c4c;
         }
+
         .container img {
-    display: block;        /* Makes the image a block-level element */
-    margin: 20px auto;     /* Centers the image horizontally */
-    width: 100%;           /* Adjust image width to fit the container */
-    max-width: 500px;      /* Optional: Limit the maximum width of the image */
-    border-radius: 10px;   /* Optional: rounded corners */
-}
+            display: block;        /* Makes the image a block-level element */
+            margin: 20px auto;     /* Centers the image horizontally */
+            width: 100%;           /* Adjust image width to fit the container */
+            max-width: 500px;      /* Optional: Limit the maximum width of the image */
+            border-radius: 10px;   /* Optional: rounded corners */
+        }
 
         .registration-form label {
             font-weight: bold;
@@ -119,7 +120,6 @@
                     <th>Whore Chosen</th>
                     <th>Phone</th>
                     <th>Rate</th>
-                    
                 </tr>
             </thead>
             <tbody id="attendees-body">
@@ -128,21 +128,18 @@
                     <td>Muzzu</td>
                     <td>Kareem Bhoda</td>
                     <td>9876543210</td>
-                    
                     <td>2 Hours</td>
                 </tr>
                 <tr>
                     <td>Chaitu</td>
-                    <td>Rachna</td>
+                    <td>Rachna Bai</td>
                     <td>9123456789</td>
-                    
                     <td>1 Hour</td>
                 </tr>
                 <tr>
                     <td>Nobody Chose</td>
                     <td>Zerlin Japani</td>
                     <td>Dhanda band hogya</td>
-                    
                     <td></td>
                 </tr>
             </tbody>
@@ -155,9 +152,9 @@
 
         // Array to hold the latest 3 attendees
         let attendees = [
-            { name: "Muzzu", pros: "Kareem Bhoda", phone: "9876543210", rate: "2 Hours",  },
-            { name: "Chaitu", pros: "Rachna", phone: "9123456789", rate: "1 Hour", },
-            { name: "Nobody Chose", pros: "Zerlin Japani", phone: "Dhanda band hogya", rate: "", }
+            { name: "Muzzu", pros: "Kareem Bhoda", phone: "9876543210", rate: "2 Hours" },
+            { name: "Chaitu", pros: "Rachna Bai", phone: "9123456789", rate: "1 Hour" },
+            { name: "Nobody Chose", pros: "Zerlin Japani", phone: "Dhanda band hogya", rate: "" }
         ];
 
         // Function to update the attendees table
@@ -173,7 +170,6 @@
                     <td>${attendee.pros}</td>
                     <td>${attendee.phone}</td>
                     <td>${attendee.rate}</td>
-                    <td>${attendee.hour}</td>
                 `;
                 attendeesTableBody.appendChild(newRow);
             }
@@ -187,10 +183,9 @@
             const pros = document.getElementById('pros').value;
             const phone = document.getElementById('phone').value;
             const rate = document.getElementById('rate').value;
-            const hour = document.getElementById('hour').value;
 
             // Add the new attendee to the array
-            const newAttendee = { name, pros, phone, rate, hour };
+            const newAttendee = { name, pros, phone, rate };
 
             // Add the new attendee and remove the oldest attendee if there are already 3
             if (attendees.length >= 3) {
