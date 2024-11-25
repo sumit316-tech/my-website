@@ -96,32 +96,32 @@ h1, h2, h3 {
         
         <h2>Book Your Hoe</h2>
         
-        <form class="registration-form">
+        <form id="registration-form" class="registration-form">
             <label for="name">Full Name:</label>
             <input type="text" id="name" placeholder="Enter your full name" required>
 
             <label for="pros">Choose Your Whore:</label>
             <select id="pros" required>
                 <option value="Kareem">Kareem Bhoda</option>
-                <option value="Day 2">Rachna Bai</option>
-                <option value="Day 3">Zerlin Japani</option>
+                <option value="Rachna Bai">Rachna Bai</option>
+                <option value="Zerlin Japani">Zerlin Japani</option>
             </select>
 
             <label for="phone">Phone Number:</label>
             <input type="number" id="phone" placeholder="Enter your phone number" required>
 
-            <label for="age">Rate</label>
-            <select id="day" required>
-                <option value="Day 1">300 Rs For 1 hour</option>
-                <option value="Day 2">500 Rs For 2 Hour</option>
-                <option value="Day 3">1000 RS for threesome</option>
+            <label for="rate">Rate</label>
+            <select id="rate" required>
+                <option value="300 Rs For 1 hour">300 Rs For 1 hour</option>
+                <option value="500 Rs For 2 hours">500 Rs For 2 hours</option>
+                <option value="1000 Rs for threesome">1000 Rs for threesome</option>
             </select>
 
-            <label for="day">Preferred Hour:</label>
-            <select id="day" required>
-                <option value="Day 1">1 hOUR</option>
-                <option value="Day 2">2 hOUR</option>
-                <option value="Day 3">3 hOUR</option>
+            <label for="hour">Preferred Hour:</label>
+            <select id="hour" required>
+                <option value="1 Hour">1 Hour</option>
+                <option value="2 Hours">2 Hours</option>
+                <option value="3 Hours">3 Hours</option>
             </select>
 
             <input type="submit" value="Register">
@@ -134,7 +134,7 @@ h1, h2, h3 {
                     <th>Name</th>
                     <th>Whore Chosen</th>
                     <th>Phone</th>
-                    <th>Age</th>
+                    <th>Rate</th>
                     <th>Preferred Hour</th>
                 </tr>
             </thead>
@@ -143,7 +143,7 @@ h1, h2, h3 {
             </tbody>
         </table>
     </div>
-    
+
     <script>
         // Get the form and table body
         const form = document.getElementById('registration-form');
