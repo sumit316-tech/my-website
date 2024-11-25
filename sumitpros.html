@@ -26,6 +26,15 @@ h1, h2, h3 {
     color: #4CAF50;
 }
 
+/* Image Styles - Centering the Image */
+.container img {
+    display: block;        /* Makes the image a block-level element */
+    margin: 20px auto;     /* Centers the image horizontally */
+    width: 100%;           /* Adjust image width to fit the container */
+    max-width: 500px;      /* Optional: Limit the maximum width of the image */
+    border-radius: 10px;   /* Optional: rounded corners */
+}
+
 /* Form Layout */
 .registration-form label {
     font-weight: bold;
@@ -47,7 +56,6 @@ h1, h2, h3 {
     background-color: #4CAF50;
     color: white;
     margin: auto;
-    
 }
 
 .registration-form input[type="submit"]:hover {
@@ -82,7 +90,10 @@ h1, h2, h3 {
 <body>
     <div class="container">
         <h1>Sumit's Prostitution HUB</h1>
+        
+        <!-- Image Added and Centered -->
         <img src="https://safecity.in/wp-content/uploads/2013/12/prostitution.jpg" alt="Prostitution Hub Image">
+        
         <h2>Book Your Hoe</h2>
         
         <form class="registration-form">
@@ -96,8 +107,6 @@ h1, h2, h3 {
                 <option value="Day 3">Zerlin Japani</option>
             </select>
 
-            
-
             <label for="phone">Phone Number:</label>
             <input type="number" id="phone" placeholder="Enter your phone number" required>
 
@@ -106,7 +115,14 @@ h1, h2, h3 {
                 <option value="Day 1">300 Rs For 1 hour</option>
                 <option value="Day 2">500 Rs For 2 Hour</option>
                 <option value="Day 3">1000 RS for threesome</option>
-            
+            </select>
+
+            <label for="day">Preferred Hour:</label>
+            <select id="day" required>
+                <option value="Day 1">1 hOUR</option>
+                <option value="Day 2">2 hOUR</option>
+                <option value="Day 3">3 hOUR</option>
+            </select>
 
             <input type="submit" value="Register">
         </form>
