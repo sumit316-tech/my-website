@@ -2,13 +2,96 @@
 <html lang="en">
 <head>
     <style>
-        /* Styling goes here */
+        /* Global Body Styles */
+body {
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+/* Container Styles */
+.container {
+    width: 90%;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+}
+
+/* Heading Styles */
+h1, h2, h3 {
+    text-align: center;
+    color: #af4c4c;
+}
+
+/* Image Styles - Centering the Image */
+.container img {
+    display: block;        /* Makes the image a block-level element */
+    margin: 20px auto;     /* Centers the image horizontally */
+    width: 100%;           /* Adjust image width to fit the container */
+    max-width: 500px;      /* Optional: Limit the maximum width of the image */
+    border-radius: 10px;   /* Optional: rounded corners */
+}
+
+/* Form Layout */
+.registration-form label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    display: block;
+}
+
+.registration-form input,
+.registration-form select {
+    padding: 10px;
+    margin: 10px;
+    font-size: 16px;
+    width: 100%;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.registration-form input[type="submit"] {
+    background-color: #4e4caf;
+    color: white;
+    margin: auto;
+}
+
+.registration-form input[type="submit"]:hover {
+    background-color: #a04545;
+}
+
+/* Table Styles */
+.attendees-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.attendees-table th {
+    background-color: #af4c4c;
+    color: white;
+    padding: 10px;
+    text-align: left;
+}
+
+.attendees-table td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+.attendees-table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
     </style>
 </head>
 <body>
     <div class="container">
         <h1>Sumit's Prostitution HUB</h1>
         
+        <!-- Image Added and Centered -->
         <img src="https://safecity.in/wp-content/uploads/2013/12/prostitution.jpg" alt="Prostitution Hub Image">
         
         <h2>Book Your Hoe</h2>
@@ -62,20 +145,19 @@
     </div>
 
     <script>
+        // Get the form and table body
         const form = document.getElementById('registration-form');
         const attendeesTableBody = document.getElementById('attendees-body');
 
-        // Fetch latest attendees on page load
-        async function loadAttendees() {
-            const response = await fetch('http://localhost:3000/attendees');
-            const attendees = await response.json();
-
+        // Load saved attendees from localStorage
+        function loadAttendees() {
+            const attendees = JSON.parse(localStorage.getItem('attendees')) || [];
             attendees.forEach(attendee => {
                 addRowToTable(attendee);
             });
         }
 
-        // Add a new attendee to the table
+        // Add a row to the table
         function addRowToTable(attendee) {
             const newRow = document.createElement('tr');
             newRow.innerHTML = `
@@ -89,37 +171,42 @@
         }
 
         // Handle form submission
-        form.addEventListener('submit', async (event) => {
-            event.preventDefault();
+        form.addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent the default form submission behavior
 
+            // Get form values
             const name = document.getElementById('name').value;
             const pros = document.getElementById('pros').value;
             const phone = document.getElementById('phone').value;
             const rate = document.getElementById('rate').value;
             const hour = document.getElementById('hour').value;
 
+            // Create a new attendee object
             const newAttendee = { name, pros, phone, rate, hour };
 
-            // Send registration data to backend
-            const response = await fetch('http://localhost:3000/register', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(newAttendee)
-            });
+            // Get the existing attendees from localStorage
+            const attendees = JSON.parse(localStorage.getItem('attendees')) || [];
 
-            const attendees = await response.json();
+            // Add the new attendee to the list
+            attendees.push(newAttendee);
 
-            // Clear table and reload the latest attendees
+            // If there are more than 3 attendees, remove the first one
+            if (attendees.length > 3) {
+                attendees.shift(); // Remove the first attendee
+            }
+
+            // Save the updated attendees back to localStorage
+            localStorage.setItem('attendees', JSON.stringify(attendees));
+
+            // Clear the table and reload the data
             attendeesTableBody.innerHTML = '';
-            attendees.forEach(addRowToTable);
+            loadAttendees();
 
-            // Clear form fields
+            // Clear form fields after submission
             form.reset();
         });
 
-        // Initial load
+        // Load saved attendees when the page loads
         window.onload = loadAttendees;
     </script>
 </body>
