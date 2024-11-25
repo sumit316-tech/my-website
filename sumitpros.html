@@ -23,7 +23,7 @@ body {
 /* Heading Styles */
 h1, h2, h3 {
     text-align: center;
-    color: #4CAF50;
+    color: #af4c4c;
 }
 
 /* Image Styles - Centering the Image */
@@ -53,13 +53,13 @@ h1, h2, h3 {
 }
 
 .registration-form input[type="submit"] {
-    background-color: #4CAF50;
+    background-color: #4e4caf;
     color: white;
     margin: auto;
 }
 
 .registration-form input[type="submit"]:hover {
-    background-color: #45a049;
+    background-color: #a04545;
 }
 
 /* Table Styles */
@@ -70,7 +70,7 @@ h1, h2, h3 {
 }
 
 .attendees-table th {
-    background-color: #4CAF50;
+    background-color: #af4c4c;
     color: white;
     padding: 10px;
     text-align: left;
@@ -96,7 +96,7 @@ h1, h2, h3 {
         
         <h2>Book Your Hoe</h2>
         
-        <form class="registration-form" id="registration-form">
+        <form class="registration-form">
             <label for="name">Full Name:</label>
             <input type="text" id="name" placeholder="Enter your full name" required>
 
@@ -110,40 +110,40 @@ h1, h2, h3 {
             <label for="phone">Phone Number:</label>
             <input type="number" id="phone" placeholder="Enter your phone number" required>
 
-            <label for="rate">Rate</label>
-            <select id="rate" required>
+            <label for="age">Rate</label>
+            <select id="day" required>
                 <option value="Day 1">300 Rs For 1 hour</option>
                 <option value="Day 2">500 Rs For 2 Hour</option>
                 <option value="Day 3">1000 RS for threesome</option>
             </select>
 
-            <label for="hour">Preferred Hour:</label>
-            <select id="hour" required>
-                <option value="1 Hour">1 Hour</option>
-                <option value="2 Hour">2 Hour</option>
-                <option value="3 Hour">3 Hour</option>
+            <label for="day">Preferred Hour:</label>
+            <select id="day" required>
+                <option value="Day 1">1 hOUR</option>
+                <option value="Day 2">2 hOUR</option>
+                <option value="Day 3">3 hOUR</option>
             </select>
 
             <input type="submit" value="Register">
         </form>
 
         <h3>Registered Attendees</h3>
-        <table class="attendees-table" id="attendees-table">
+        <table class="attendees-table">
             <thead>
                 <tr>
                     <th>Name</th>
                     <th>Whore Chosen</th>
                     <th>Phone</th>
-                    <th>Rate</th>
+                    <th>Age</th>
                     <th>Preferred Hour</th>
                 </tr>
             </thead>
             <tbody id="attendees-body">
-                <!-- Dynamic content will be added here -->
+               <!-- Dynamic content will be added here -->
             </tbody>
         </table>
     </div>
-
+    
     <script>
         // Get the form and table body
         const form = document.getElementById('registration-form');
