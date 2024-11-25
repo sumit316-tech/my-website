@@ -96,7 +96,7 @@ h1, h2, h3 {
         
         <h2>Book Your Hoe</h2>
         
-        <form class="registration-form">
+        <form class="registration-form" id="registration-form">
             <label for="name">Full Name:</label>
             <input type="text" id="name" placeholder="Enter your full name" required>
 
@@ -110,58 +110,80 @@ h1, h2, h3 {
             <label for="phone">Phone Number:</label>
             <input type="number" id="phone" placeholder="Enter your phone number" required>
 
-            <label for="age">Rate</label>
-            <select id="day" required>
+            <label for="rate">Rate</label>
+            <select id="rate" required>
                 <option value="Day 1">300 Rs For 1 hour</option>
                 <option value="Day 2">500 Rs For 2 Hour</option>
                 <option value="Day 3">1000 RS for threesome</option>
             </select>
 
-            <label for="day">Preferred Hour:</label>
-            <select id="day" required>
-                <option value="Day 1">1 hOUR</option>
-                <option value="Day 2">2 hOUR</option>
-                <option value="Day 3">3 hOUR</option>
+            <label for="hour">Preferred Hour:</label>
+            <select id="hour" required>
+                <option value="1 Hour">1 Hour</option>
+                <option value="2 Hour">2 Hour</option>
+                <option value="3 Hour">3 Hour</option>
             </select>
 
             <input type="submit" value="Register">
         </form>
 
         <h3>Registered Attendees</h3>
-        <table class="attendees-table">
+        <table class="attendees-table" id="attendees-table">
             <thead>
                 <tr>
                     <th>Name</th>
                     <th>Whore Chosen</th>
                     <th>Phone</th>
-                    <th>Age</th>
+                    <th>Rate</th>
                     <th>Preferred Hour</th>
                 </tr>
             </thead>
-            <tbody>
-                <tr>
-                    <td>Muzzu</td>
-                    <td>Kareem Bhoda</td>
-                    <td>9876543210</td>
-                    <td>30</td>
-                    <td>2 Hours</td>
-                </tr>
-                <tr>
-                    <td>Chaitu</td>
-                    <td>Rachna</td>
-                    <td>9123456789</td>
-                    <td>25</td>
-                    <td>1 hour</td>
-                </tr>
-                <tr>
-                    <td>Nobody Chose</td>
-                    <td>Zerlin Japani</td>
-                    <td>Dhanda band hogya</td>
-                    <td></td>
-                    <td></td>
-                </tr>
+            <tbody id="attendees-body">
+                <!-- Dynamic content will be added here -->
             </tbody>
         </table>
     </div>
+
+    <script>
+        // Get the form and table body
+        const form = document.getElementById('registration-form');
+        const attendeesTableBody = document.getElementById('attendees-body');
+
+        // Handle form submission
+        form.addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent the default form submission behavior
+
+            // Get form values
+            const name = document.getElementById('name').value;
+            const pros = document.getElementById('pros').value;
+            const phone = document.getElementById('phone').value;
+            const rate = document.getElementById('rate').value;
+            const hour = document.getElementById('hour').value;
+
+            // Create a new table row
+            const newRow = document.createElement('tr');
+
+            // Create table cells and append them to the row
+            newRow.innerHTML = `
+                <td>${name}</td>
+                <td>${pros}</td>
+                <td>${phone}</td>
+                <td>${rate}</td>
+                <td>${hour}</td>
+            `;
+
+            // Append the new row to the table body
+            attendeesTableBody.appendChild(newRow);
+
+            // Check if there are more than 3 rows
+            const rows = attendeesTableBody.getElementsByTagName('tr');
+            if (rows.length > 3) {
+                attendeesTableBody.deleteRow(0); // Remove the first row if there are more than 3
+            }
+
+            // Clear form fields after submission
+            form.reset();
+        });
+    </script>
 </body>
 </html>
